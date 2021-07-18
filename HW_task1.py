@@ -20,10 +20,11 @@ class CoutryIterator():
     def __next__(self):
         try:
             self.cursor += 1
-            wiki_link = f'https://en.wikipedia.org/wiki/{str(self.get_country_list()[self.cursor]).replace(" ", "_")}'
+            country_name = self.get_country_list()[self.cursor]
+            wiki_link = f'https://en.wikipedia.org/wiki/{str(country_name).replace(" ", "_")}'
             with open(self.path_to_write, 'a', encoding='utf-8') as f:
-                f.write(f'{self.get_country_list()[self.cursor]} - {wiki_link}\n')
-                return f'Cтрана {self.get_country_list()[self.cursor]} размещена по ссылке {wiki_link}'
+                f.write(f'{country_name} - {wiki_link}\n')
+                return f'Cтрана {country_name} размещена по ссылке {wiki_link}'
         except IndexError:
             raise StopIteration
 
